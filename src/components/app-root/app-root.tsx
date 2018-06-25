@@ -16,7 +16,6 @@ export class AppRoot {
 						<stencil-route url='/' component='app-home' exact={true}></stencil-route>
 						<stencil-route url='/repos' component='repos-page' exact={true}></stencil-route>
 						<stencil-route url='/repos/:owner/:repo' component='repo-detail-page'></stencil-route>
-						{/* <stencil-route url='/profile/:name' component='app-profile'></stencil-route> */}
 					</stencil-router>
 				</main>
 			</div>

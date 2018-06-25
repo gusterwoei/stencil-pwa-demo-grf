@@ -1,5 +1,5 @@
 import { Component, State, Prop } from '@stencil/core'
-import 'whatwg-fetch'
+// import 'whatwg-fetch'
 import { Repo } from '../../common/repo';
 import { RouterHistory } from '@stencil/router';
 

@@ -15,10 +15,8 @@
     "test.watch": "jest --watch"
   },
   "dependencies": {
-    "@stencil/core": "^0.9.9",
-    "@stencil/router": "^0.2.2-2",
-    "promise-polyfill": "^8.0.0",
-    "whatwg-fetch": "^2.0.4"
+    "@stencil/core": "^0.9.11",
+    "@stencil/router": "latest"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",

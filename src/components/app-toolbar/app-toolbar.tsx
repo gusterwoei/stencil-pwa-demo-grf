@@ -5,7 +5,6 @@ import { Component } from "@stencil/core";
 	styleUrl: 'app-toolbar.css'
 })
 export class AppToolbar {
-
 	render() {
 		return (
 			<header>

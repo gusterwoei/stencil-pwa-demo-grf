@@ -1,7 +1,6 @@
 import { Component, Prop, State } from '@stencil/core';
 import { MatchResults } from '@stencil/router';
 import { Repo } from '../../common/repo';
-import 'whatwg-fetch'
 import { License } from '../../common/license';
 
 @Component({
