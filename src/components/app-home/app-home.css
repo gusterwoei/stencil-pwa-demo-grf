@@ -1,5 +1,10 @@
+body {
+	/* background-color: beige !important; */
+}
+
 .app-home {
   padding: 10px;
+  height: 100%;
 }
 
 button {
@@ -24,3 +29,8 @@ button:hover {
   transform: translateY(1px);
 }
 
+.content-root {
+	margin: auto;
+	text-align: center;
+	height: 100% !important;
+}

@@ -15,13 +15,15 @@
     "test.watch": "jest --watch"
   },
   "dependencies": {
-    "@stencil/core": "^0.9.7",
-    "@stencil/router": "latest"
+    "@stencil/core": "^0.9.9",
+    "@stencil/router": "^0.2.2-2",
+    "promise-polyfill": "^8.0.0",
+    "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
     "@stencil/dev-server": "latest",
     "@stencil/utils": "latest",
-    "@types/jest": "^21.1.1",
+    "@types/jest": "^21.1.10",
     "jest": "^21.2.1"
   },
   "repository": {

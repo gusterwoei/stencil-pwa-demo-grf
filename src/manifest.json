@@ -1,6 +1,6 @@
 {
-  "name": "Stencil Starter",
-  "short_name": "Stencil",
+  "name": "Gihub Repository Finder",
+  "short_name": "Gitfind",
   "start_url": "/",
   "display": "standalone",
   "icons": [{
