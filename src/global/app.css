@@ -37,11 +37,58 @@ button {
     cursor: pointer;
 }
 
-.center {
-    display: block;
-    margin: auto;
+/* PADDING */
+.padding {
+    padding: 10px !important;
+}
+.pt {
+	padding-top: 10px !important;
+}
+.pr {
+	padding-right: 10px !important;
+}
+.pb {
+	padding-bottom: 10px !important;
+}
+.pl {
+	padding-left: 10px !important;
 }
 
-.padding {
-    padding: 10px;
+/* MARGIN */
+.margin {
+	margin: 10px !important;
+}
+.mt {
+	margin-top: 10px !important;
+}
+.mr {
+	margin-right: 10px !important;
+}
+.mb {
+	margin-bottom: 10px !important;
+}
+.ml {
+	margin-left: 10px !important;
+}
+
+.error-text {
+	color: red;
+}
+
+.full-width {
+	margin: auto;
+	width: 100%;
+	text-align: center;
+}
+
+.wrap-text {
+	word-wrap: break-word;
+}
+
+.btn-primary {
+	background-color: royalblue !important;
+}
+
+.fa {
+	font-size: 26px;
 }

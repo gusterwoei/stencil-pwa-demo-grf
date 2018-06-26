@@ -103,7 +103,8 @@ declare global {
 
   namespace StencilComponents {
     interface AppToolbar {
-
+      'router': RouterHistory;
+      'visible': boolean;
     }
   }
 
@@ -126,7 +127,74 @@ declare global {
   }
   namespace JSXElements {
     export interface AppToolbarAttributes extends HTMLAttributes {
+      'router'?: RouterHistory;
+      'visible'?: boolean;
+    }
+  }
+}
 
+
+declare global {
+
+  namespace StencilComponents {
+    interface BasePage {
+
+    }
+  }
+
+  interface HTMLBasePageElement extends StencilComponents.BasePage, HTMLStencilElement {}
+
+  var HTMLBasePageElement: {
+    prototype: HTMLBasePageElement;
+    new (): HTMLBasePageElement;
+  };
+  interface HTMLElementTagNameMap {
+    'base-page': HTMLBasePageElement;
+  }
+  interface ElementTagNameMap {
+    'base-page': HTMLBasePageElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'base-page': JSXElements.BasePageAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface BasePageAttributes extends HTMLAttributes {
+      'onShowToolbarEvent'?: (event: CustomEvent) => void;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface ProgressBar {
+      'isHorizontal': boolean;
+    }
+  }
+
+  interface HTMLProgressBarElement extends StencilComponents.ProgressBar, HTMLStencilElement {}
+
+  var HTMLProgressBarElement: {
+    prototype: HTMLProgressBarElement;
+    new (): HTMLProgressBarElement;
+  };
+  interface HTMLElementTagNameMap {
+    'progress-bar': HTMLProgressBarElement;
+  }
+  interface ElementTagNameMap {
+    'progress-bar': HTMLProgressBarElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'progress-bar': JSXElements.ProgressBarAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface ProgressBarAttributes extends HTMLAttributes {
+      'isHorizontal'?: boolean;
     }
   }
 }
@@ -136,6 +204,7 @@ declare global {
 
   namespace StencilComponents {
     interface RepoDetailPage {
+      'history': RouterHistory;
       'match': MatchResults;
     }
   }
@@ -159,6 +228,7 @@ declare global {
   }
   namespace JSXElements {
     export interface RepoDetailPageAttributes extends HTMLAttributes {
+      'history'?: RouterHistory;
       'match'?: MatchResults;
     }
   }

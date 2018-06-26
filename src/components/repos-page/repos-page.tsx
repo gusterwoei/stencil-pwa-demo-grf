@@ -1,25 +1,28 @@
 import { Component, State, Prop } from '@stencil/core'
-// import 'whatwg-fetch'
 import { Repo } from '../../common/repo';
 import { RouterHistory } from '@stencil/router';
+import { BasePage } from '../base-page';
 
 @Component({
 	tag: 'repos-page',
 	styleUrl: 'repos-page.css'
 })
-export class ReposPage {
+export class ReposPage extends BasePage {
 	@Prop() history: RouterHistory;
 	@State() mData: Repo[] = [];
 	@State() mError: string;
+	@State() mIsLoading: boolean = false;
 
 	mSearchText: string;
 
 	componentWillLoad() {
-		
+		super.componentWillLoad()
 	}
 
 	getReposFromApi(developer: string) {
+		this.mIsLoading = true
 		fetch('https://api.github.com/users/' + developer + '/repos').then(response => {
+			this.mIsLoading = false
 			if (response.status != 200) {
 				this.mData = []
 				return;
@@ -33,7 +36,7 @@ export class ReposPage {
 
 	onItemClick(item: Repo) {
 		// window.location.href = item.html_url
-		this.history.push("/repos/" + item.owner.login + '/' + item.name, {})
+		this.history.push("/repo-info/" + item.owner.login + '/' + item.name, {})
 	}
 
 	searchRepo() {
@@ -53,42 +56,55 @@ export class ReposPage {
 
 	render() {
 		return [
-			<app-toolbar/>,
-			<div class='container padding'>
+			<div class='container'>
 				<div class='form-group'>
-					<input
-						class='form-control'
-						type='text'
-						placeholder='Search Developers'
+					<input class='form-control' type='text' placeholder='Search Developers'
+						onKeyDown={(e) => {
+							if (e.code != 'Enter') return;
+							this.searchRepo()
+						}}
 						onInput={(event) => this.onSearchInput(event)}>
 					</input>
 
-					{/* error */}
 					{
+						// error message
 						!this.mError || this.mError.trim() == '' ?
 							<div /> :
-							<p class="text-danger">{this.mError}</p>
+							<p class="error-text">{this.mError}</p>
 					}
 
-					<button class='container-fluid btn btn-primary mt-2' onClick={() => this.searchRepo()}>Search</button>
+					<button class='btn waves-effect full-width' onClick={() => this.searchRepo()}>Search</button>
 				</div>
+
+				{ 
+					// progress bar
+					this.mIsLoading ?
+					<div class='full-width mt'>
+						<progress-bar></progress-bar>
+					</div>
+					: <div/>
+				}
+
 				{
+					//  data
 					this.mData.length == 0 && this.mSearchText ?
-					<p>No repository found for {this.mSearchText}</p> :
-					
-					// returned repositories
-					this.mData.map((item) =>
-						<div class='card mt-2 p-3' onClick={() => this.onItemClick(item)}>
-							<div class='row padding'>
-								<img src={item.owner.avatar_url} width='50' height='50' />
-								<div class='col-10'>
-									<b>{item.name}</b>
-									<p><a href={item.html_url}>{item.html_url}</a></p>
+						<p>No repository found for {this.mSearchText}</p> :
+
+						// returned repositories
+						this.mData.map((item) =>
+							<div class='card padding' onClick={() => this.onItemClick(item)}>
+								<div class='row'>
+									<div class='col s2'>
+										<img src={item.owner.avatar_url} width='50' height='50' />
+									</div>
+									<div class='col s9 ml wrap-text'>
+										<b>{item.name}</b>
+										<p><a href={item.html_url}>{item.html_url}</a></p>
+									</div>
 								</div>
+								<div class='row'>{item.description}</div>
 							</div>
-							<p>{item.description}</p>
-						</div>
-					)
+						)
 				}
 			</div>
 		]
