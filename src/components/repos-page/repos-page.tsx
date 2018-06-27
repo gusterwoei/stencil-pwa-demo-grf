@@ -121,7 +121,7 @@ export class ReposPage extends BasePage {
 	}
 
 	private onItemClick(item: Repo) {
-		this.history.push(`/repos/${item.owner.login}/${item.name}`, {})
+		this.history.push(`/repo-detail/${item.owner.login}/${item.name}`, {})
 	}
 
 	private searchRepo() {

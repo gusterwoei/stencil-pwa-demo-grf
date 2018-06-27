@@ -37,8 +37,7 @@ export class AppRoot {
 						{/* <stencil-route-switch scrollTopOffset={0}> */}
 							<stencil-route url="/" component="app-home" exact={true}></stencil-route>
 							<stencil-route url="/repos" component="repos-page" exact={false}></stencil-route>
-							<stencil-route url="/repos/" component="repos-page" exact={false}></stencil-route>
-							<stencil-route url="/repos/:owner/:repo" component="repo-detail-page" exact={false}></stencil-route>
+							<stencil-route url="/repo-detail/:owner/:repo" component="repo-detail-page" exact={false}></stencil-route>
 							{/* <stencil-route component="repos-page"></stencil-route> */}
 						{/* </stencil-route-switch> */}
 					</stencil-router>
