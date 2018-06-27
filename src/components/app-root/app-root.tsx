@@ -1,6 +1,5 @@
-import { Component, Prop, Listen, Element, State } from '@stencil/core';
+import { Component, Prop, Listen, State } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
-import { AppToolbar } from '../app-toolbar/app-toolbar';
 
 @Component({
 	tag: 'app-root',
@@ -12,7 +11,6 @@ export class AppRoot {
 
 	@Listen('showToolbarEvent')
 	handleShowToolbarEvent(event: CustomEvent) {
-		// console.log(event)
 		this.mShowToolbar = true
 	}
 
@@ -25,19 +23,24 @@ export class AppRoot {
 	}
 
 	render() {
+		// materialcss initializes dropdown
+		let elems = document.querySelectorAll('select');
+		if (window['M'])
+			window['M'].FormSelect.init(elems);
+	
 		return (
 			<div>
 				<app-toolbar visible={this.mShowToolbar} />
 				<main>
 					<stencil-router>
-						{/* stnecil-route-switch is important to ensure direct deep-level url visit will work on production server */}
-						<stencil-route-switch scrollTopOffset={0}>
+						{/* use the exact version for stencil-router ie. (^0.2.2) instead of latest, the current latest might not be stable and is subjected to errors */}
+						{/* <stencil-route-switch scrollTopOffset={0}> */}
 							<stencil-route url="/" component="app-home" exact={true}></stencil-route>
 							<stencil-route url="/repos" component="repos-page" exact={false}></stencil-route>
-							<stencil-route url="/repo-info/:owner/:repo" component="repo-detail-page" exact={false}></stencil-route>
-							<stencil-route url="/test" component="repo-detail-page" exact={false}></stencil-route>
-							<stencil-route component="repos-page"></stencil-route>
-						</stencil-route-switch>
+							<stencil-route url="/repos/" component="repos-page" exact={false}></stencil-route>
+							<stencil-route url="/repos/:owner/:repo" component="repo-detail-page" exact={false}></stencil-route>
+							{/* <stencil-route component="repos-page"></stencil-route> */}
+						{/* </stencil-route-switch> */}
 					</stencil-router>
 				</main>
 			</div>

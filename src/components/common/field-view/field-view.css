@@ -1,0 +1,13 @@
+.root {
+	text-align: center;
+}
+
+.title {
+	font-size: 12px;
+	color: #AAA;
+}
+
+.value {
+	font-size: 12px;
+	font-weight: bold;
+}

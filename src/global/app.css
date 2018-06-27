@@ -37,6 +37,10 @@ button {
     cursor: pointer;
 }
 
+a {
+	font-size: 13px;
+}
+
 /* PADDING */
 .padding {
     padding: 10px !important;
@@ -91,4 +95,14 @@ button {
 
 .fa {
 	font-size: 26px;
+}
+
+.field-title {
+	font-size: 12px;
+	color: #AAA;
+}
+
+.field-value {
+	font-size: 12px;
+	font-weight: bold;
 }

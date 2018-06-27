@@ -1,8 +1,9 @@
-import { Component, Prop, State, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 import { MatchResults, RouterHistory } from '@stencil/router';
 import { Repo } from '../../common/repo';
 import { License } from '../../common/license';
 import { BasePage } from '../base-page';
+import { Commit } from '../../common/commit';
 
 @Component({
 	tag: 'repo-detail-page',
@@ -13,14 +14,19 @@ export class RepoDetailPage extends BasePage {
 	@Prop() match: MatchResults
 	@State() mRepo: Repo
 	@State() mLicence: License
+	@State() mCommits: Commit[] = [];
 
 	componentWillLoad() {
 		super.componentWillLoad()
+		this.loadRepoDetail()
+		this.loadLastCommit()
+	}
+
+	private loadRepoDetail() {
 		let owner = this.match.params.owner
 		let repo = this.match.params.repo
 
-		let url = 'https://api.github.com/repos/' + encodeURI(owner) + '/' + encodeURI(repo)
-		console.log(url)
+		let url = `https://api.github.com/repos/${encodeURI(owner)}/${encodeURI(repo)}`
 		fetch(url).then(response => {
 			if (response.status != 200) {
 				this.mRepo = null
@@ -42,6 +48,26 @@ export class RepoDetailPage extends BasePage {
 		})
 	}
 
+	private loadLastCommit() {
+		let owner = this.match.params.owner
+		let repo = this.match.params.repo
+
+		let url = `https://api.github.com/repos/${encodeURI(owner)}/${encodeURI(repo)}/commits`
+		fetch(url).then(response => {
+			if(response.status != 200) {
+				this.mCommits = []
+				return;
+			}
+
+			response.json().then(data => {
+				data.forEach((item) => {
+					let obj = Object.assign(new Commit(), item)
+					this.mCommits.push(obj)
+				})
+			})
+		})
+	}
+
 	render() {
 		return [
 			<div class='container'>
@@ -57,9 +83,33 @@ export class RepoDetailPage extends BasePage {
 									<div class='col s9'>
 										<b>{this.mRepo.name}</b>
 									</div>
+									<div class='col'>
+										<div>{this.mRepo.description}</div>
+									</div>
 								</div>
+
+								{/* other details */}
+								<div class='row'>
+									<div class='col s4'>
+										<field-view key='Language' value={this.mRepo.language} />
+									</div>
+									<div class='col s4'>
+										<field-view key='Watchers' value={this.mRepo.watchers_count + ''} />
+									</div>
+									<div class='col s4'>
+										<field-view key='Issues' value={this.mRepo.open_issues_count + ''} valueColor='red' />
+									</div>
+								</div>
+
+								<div>
+									<span class='field-title'>Last Commit:</span> &nbsp;
+									<span class='field-value'>
+										{this.mCommits && this.mCommits.length > 0 ? this.mCommits[0].getLastCommitDate() : ''}
+									</span>
+								</div>
+
+								{/* hyperlink */}
 								<a class='mt-3' href={this.mRepo.html_url}>{this.mRepo.html_url}</a>
-								<div>{this.mRepo.description}</div>
 							</div>
 
 							{/* license */}
@@ -67,10 +117,10 @@ export class RepoDetailPage extends BasePage {
 								this.mLicence ?
 									<div class='mt-5'>
 										<h5>{this.mLicence.name}</h5>
-										{this.mLicence.body}
+										<div class='tnc'>{this.mLicence.body}</div>
 									</div>
 									:
-									<div />
+									<div/>
 							}
 						</div>
 						: <div />

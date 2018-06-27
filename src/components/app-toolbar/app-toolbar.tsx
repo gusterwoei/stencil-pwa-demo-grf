@@ -1,4 +1,4 @@
-import { Component, Prop, Listen, State } from "@stencil/core";
+import { Component, Prop } from "@stencil/core";
 import { RouterHistory } from '@stencil/router';
 
 @Component({
@@ -14,17 +14,20 @@ export class AppToolbar {
 		this.router.goBack()
 	}
 
+	onHomeClicked() {
+		window.dispatchEvent(new Event('popstate'))
+	}
+
 	render() {
 		return (
-			<header style={{'visibility': this.visible ? 'visible' : 'hidden'}}>
+			<header style={{ 'visibility': this.visible ? 'visible' : 'hidden' }}>
 				{/* <div class='d-flex flex-row justify-content-center'> */}
 				<div class='row'>
-					<stencil-route-link url='/' exact={true}>
-					<div class='col valign-wrapper toolbar'>
-						{/* <p onClick={() => this.onBackPressed()}><i class='fa fa-arrow-left' /></p> */}
-						<img src='../../assets/icon/app_icon.png' width='50' height='50' />
-						<span>Git Finder</span>
-					</div>
+					<stencil-route-link url='/' exact={true} onClick={() => this.onHomeClicked()}>
+						<div class='col valign-wrapper toolbar'>
+							<img src='../../assets/icon/app_icon.png' width='50' height='50' />
+							<span>Git Finder</span>
+						</div>
 					</stencil-route-link>
 					{/* <div class='col s8'>
 						<img src='../../assets/icon/app_icon.png' width='50' height='50' />

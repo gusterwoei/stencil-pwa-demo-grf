@@ -5,7 +5,12 @@ import { Component, Listen } from '@stencil/core';
 	styleUrl: 'app-home.css'
 })
 export class AppHome {
-	
+
+	componentDidLoad() {
+		// clear caches
+		if (window.sessionStorage) window.sessionStorage.clear()
+	}
+
 	render() {
 		return (
 			<div class='app-home'>

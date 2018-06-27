@@ -170,6 +170,43 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface FieldView {
+      'key': string;
+      'value': string;
+      'valueColor': string;
+    }
+  }
+
+  interface HTMLFieldViewElement extends StencilComponents.FieldView, HTMLStencilElement {}
+
+  var HTMLFieldViewElement: {
+    prototype: HTMLFieldViewElement;
+    new (): HTMLFieldViewElement;
+  };
+  interface HTMLElementTagNameMap {
+    'field-view': HTMLFieldViewElement;
+  }
+  interface ElementTagNameMap {
+    'field-view': HTMLFieldViewElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'field-view': JSXElements.FieldViewAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface FieldViewAttributes extends HTMLAttributes {
+      'key'?: string;
+      'value'?: string;
+      'valueColor'?: string;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface ProgressBar {
       'isHorizontal': boolean;
     }
