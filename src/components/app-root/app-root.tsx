@@ -19,8 +19,8 @@ export class AppRoot {
 		window.addEventListener('popstate', (event) => {
 			let url = window.location.pathname
 			this.mShowToolbar = url.trim() != '/'
-		})
-	}
+      })
+   }
 
 	render() {
 		// materialcss initializes dropdown
@@ -30,8 +30,8 @@ export class AppRoot {
 	
 		return (
 			<div>
-				<app-toolbar visible={this.mShowToolbar} />
-				<main>
+            <app-toolbar visible={this.mShowToolbar} />
+            <main>
 					<stencil-router>
 						{/* use the exact version for stencil-router ie. (^0.2.2) instead of latest, the current latest might not be stable and is subjected to errors */}
 						{/* <stencil-route-switch scrollTopOffset={0}> */}

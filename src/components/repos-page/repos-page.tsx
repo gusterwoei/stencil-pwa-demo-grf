@@ -8,7 +8,7 @@ import { Observable, zip, Subscriber } from 'rxjs';
 
 @Component({
 	tag: 'repos-page',
-	styleUrl: 'repos-page.css'
+	styleUrl: 'repos-page.scss'
 })
 export class ReposPage extends BasePage {
 	private readonly SORT_OPTION_DEVELOPERS = 1
@@ -28,7 +28,7 @@ export class ReposPage extends BasePage {
 		let cacheData = window.sessionStorage.getItem(Constant.PREF_CACHE_REPOS)
 		if (cacheData) {
 			this.mData = JSON.parse(cacheData)
-		}
+      }
 	}
 
 	private getReposFromApi(developer: string) {

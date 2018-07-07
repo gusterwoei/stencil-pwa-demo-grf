@@ -3,7 +3,7 @@ import { RouterHistory } from '@stencil/router';
 
 @Component({
 	tag: 'app-toolbar',
-	styleUrl: 'app-toolbar.css'
+	styleUrl: 'app-toolbar.scss'
 })
 export class AppToolbar {
 	@Prop() router: RouterHistory
@@ -21,8 +21,8 @@ export class AppToolbar {
 	render() {
 		return (
 			<header style={{ 'visibility': this.visible ? 'visible' : 'hidden' }}>
-				{/* <div class='d-flex flex-row justify-content-center'> */}
-				<div class='row'>
+            {/* <div class='d-flex flex-row justify-content-center'> */}
+            <div class='row'>
 					<stencil-route-link url='/' exact={true} onClick={() => this.onHomeClicked()}>
 						<div class='col valign-wrapper toolbar'>
 							<img src='../../assets/icon/app_icon.png' width='50' height='50' />

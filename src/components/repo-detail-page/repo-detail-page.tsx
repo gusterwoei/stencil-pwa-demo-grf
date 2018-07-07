@@ -7,7 +7,7 @@ import { Commit } from '../../common/commit';
 
 @Component({
 	tag: 'repo-detail-page',
-	styleUrl: 'repo-detail-page.css'
+	styleUrl: 'repo-detail-page.scss'
 })
 export class RepoDetailPage extends BasePage {
 	@Prop() history: RouterHistory

@@ -1,0 +1,20 @@
+app-toolbar {
+   header {
+      position: fixed;
+      z-index: 100;
+      width: 100%;
+      top: 0;
+      height: var(--toolbar-height);
+      background: #3677bd;
+      // display: flex;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+   }
+
+   .toolbar {
+      color: white !important;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 3px;
+      cursor: pointer;
+   }
+}
