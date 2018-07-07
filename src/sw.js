@@ -1,4 +1,5 @@
-importScripts('workbox-v3.3.0/Workbox-sw.js');
+// importScripts('workbox-v3.3.0/Workbox-sw.js');
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.3.1/workbox-sw.js');
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
@@ -13,5 +14,3 @@ self.workbox.clientsClaim();
 console.log('injecting custom service worker yo')
 
 self.workbox.precaching.precacheAndRoute([]);
-// self.workbox.precaching.suppressWarnings();
-// workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
