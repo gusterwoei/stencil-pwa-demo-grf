@@ -37,7 +37,7 @@ declare global {
 
   namespace StencilComponents {
     interface AppHome {
-
+      'history': RouterHistory;
     }
   }
 
@@ -60,7 +60,7 @@ declare global {
   }
   namespace JSXElements {
     export interface AppHomeAttributes extends HTMLAttributes {
-
+      'history'?: RouterHistory;
     }
   }
 }
